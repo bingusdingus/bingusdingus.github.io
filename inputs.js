@@ -148,7 +148,6 @@ function addToInputBuffer(input) {
                     inputsBuffer.push({ input: input, timestamp: Date.now() });
             } else
                 inputsBuffer.push({ input: input, timestamp: Date.now() });
-
         }
     } else
         inputsBuffer.push({ input: input, timestamp: Date.now() });
