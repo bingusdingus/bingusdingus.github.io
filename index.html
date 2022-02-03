@@ -8,10 +8,12 @@
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet"
         integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous">
 
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.8.0/font/bootstrap-icons.css">
+
     <style>
-        * {
+        /* * {
             line-height: 0 !important;
-        }
+        } */
 
         .button {
             width: 100px;
@@ -47,13 +49,24 @@
         .ex {
             background-color: var(--bs-gray-dark);
         }
+
+        .input-display {
+            color: white;
+            opacity: 1 !important;
+            font-size: 4rem;
+            /* text-align: center; */
+        }
+
+        .flex-break {
+            flex: 0 0 100% !important;
+        }
     </style>
 
     <title>Controller</title>
 </head>
 
 <body>
-    <div class="d-flex p-5">
+    <div class="d-flex flex-wrap justify-content-center p-5">
         <div class="d-flex flex-shrink p-5 bg-dark rounded-pill">
             <div id="directions">
                 <canvas id="canvas" width="256" height="256"></canvas>
@@ -72,6 +85,19 @@
                     <div id="c" class="button rounded-circle ex"></div>
                 </div>
             </div>
+        </div>
+        <div class="flex-break"></div>
+        <div id="inputDisplay" class="d-flex flex-grow bg-dark rounded-pill mt-3">
+            <div class="button rounded-circle input-display d-flex justify-content-center"><i class=""></i></div>
+            <div class="button rounded-circle input-display d-flex justify-content-center"><i class=""></i></div>
+            <div class="button rounded-circle input-display d-flex justify-content-center"><i class=""></i></div>
+            <div class="button rounded-circle input-display d-flex justify-content-center"><i class=""></i></div>
+            <div class="button rounded-circle input-display d-flex justify-content-center"><i class=""></i></div>
+            <div class="button rounded-circle input-display d-flex justify-content-center"><i class=""></i></div>
+            <div class="button rounded-circle input-display d-flex justify-content-center"><i class=""></i></div>
+            <div class="button rounded-circle input-display d-flex justify-content-center"><i class=""></i></div>
+            <div class="button rounded-circle input-display d-flex justify-content-center"><i class=""></i></div>
+            <div class="button rounded-circle input-display d-flex justify-content-center"><i class=""></i></div>
         </div>
     </div>
 

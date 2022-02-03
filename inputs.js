@@ -1,4 +1,5 @@
 let gamepad = {};
+let inputsBuffer = [];
 let elements = {};
 let canvas = null;
 let ctx = null;
@@ -73,29 +74,47 @@ function handleInputs() {
     let ex2 = gamepad.buttons[7];
     let ex3 = gamepad.buttons[6];
 
-    if (isPressed(p))
+    if (isPressed(p)) {
         elements.punch.classList.add('button-active');
+        addToInputBuffer('p');
+    }
 
-    if (isPressed(k))
+    if (isPressed(k)) {
         elements.kick.classList.add('button-active');
+        addToInputBuffer('k');
+    }
 
-    if (isPressed(s))
+    if (isPressed(s)) {
         elements.slash.classList.add('button-active');
+        addToInputBuffer('s');
+    }
 
-    if (isPressed(h))
+    if (isPressed(h)) {
         elements.heavySlash.classList.add('button-active');
+        addToInputBuffer('h');
+    }
 
-    if (isPressed(d))
+    if (isPressed(d)) {
         elements.dust.classList.add('button-active');
+        addToInputBuffer('d');
+    }
 
-    if (isPressed(ex1))
+    if (isPressed(ex1)) {
         elements.extraOne.classList.add('button-active');
+        addToInputBuffer('ex1');
+    }
 
-    if (isPressed(ex2))
+    if (isPressed(ex2)) {
         elements.extraTwo.classList.add('button-active');
+        addToInputBuffer('ex2');
+    }
 
-    if (isPressed(ex3))
+    if (isPressed(ex3)) {
         elements.extraThree.classList.add('button-active');
+        addToInputBuffer('ex3');
+    }
+
+    parseAndDisplayInputs();
 
     requestAnimationFrame(handleInputs);
 }
@@ -107,23 +126,123 @@ function isPressed(button) {
     return b == 1.0;
 }
 
+function addToInputBuffer(input) {
+    inputsBuffer.push({ input: input, timestamp: Date.now() });
+
+    if (inputsBuffer.length > 720) // 5 seconds of inputs straight
+        inputsBuffer.shift();
+}
+
+function parseAndDisplayInputs() {
+    let inputs = ['', '', '', '', '', '', '', '', '', ''];
+
+    for (let i = 0; i < inputsBuffer.length; i++) {
+        let input = inputsBuffer[i];
+        let prevInput = -1
+
+        if ((i - 1) != -1)
+            prevInput = inputsBuffer.map(e => e.input).lastIndexOf(input.input, i - 1);
+
+        if (prevInput != -1) {
+            let pI = inputsBuffer[prevInput];
+            let cI = input;
+
+            if (!(Math.abs(cI.timestamp - pI.timestamp) <= 10))
+                inputs.push(cI.input);
+        } else
+            inputs.push(input.input);
+
+        if (inputs.length > 10)
+            inputs.shift();
+    }
+
+    let displays = document.getElementById('inputDisplay').children;
+    for (let i = 0; i < inputs.length; i++) {
+        displays[i].className = 'button rounded-circle input-display d-flex justify-content-center';
+        displays[i].firstChild.className = '';
+
+        if (inputs[i] != '') {
+            switch (inputs[i]) {
+                case 'p':
+                    displays[i].classList.add('p');
+                    break;
+                case 'k':
+                    displays[i].classList.add('k');
+                    break;
+                case 's':
+                    displays[i].classList.add('s');
+                    break;
+                case 'h':
+                    displays[i].classList.add('h');
+                    break;
+                case 'd':
+                    displays[i].classList.add('d');
+                    break;
+                case 'ex1':
+                case 'ex2':
+                case 'ex3':
+                    displays[i].classList.add('ex');
+                    break;
+                case 'UB':
+                    displays[i].firstChild.className = "bi bi-arrow-up-left";
+                    break;
+                case 'U':
+                    displays[i].firstChild.className = "bi bi-arrow-up";
+                    break;
+                case 'UF':
+                    displays[i].firstChild.className = "bi bi-arrow-up-right";
+                    break;
+                case 'B':
+                    displays[i].firstChild.className = "bi bi-arrow-left";
+                    break;
+                case 'F':
+                    displays[i].firstChild.className = "bi bi-arrow-right";
+                    break;
+                case 'DB':
+                    displays[i].firstChild.className = "bi bi-arrow-down-left";
+                    break;
+                case 'D':
+                    displays[i].firstChild.className = "bi bi-arrow-down";
+                    break;
+                case 'DF':
+                    displays[i].firstChild.className = "bi bi-arrow-down-right";
+                    break;
+            }
+        } else
+            continue;
+    }
+}
+
 function handleDirections(up, down, left, right) {
     ctx.clearRect(0, 0, canvas.width, canvas.height);
 
     let x = 0;
     let y = 0;
 
-    if (up)
+    let dir = ''
+
+    if (up) {
         y = -1;
+        dir = 'U';
+    }
 
-    if (down)
+    if (down) {
         y = 1;
+        dir = 'D';
+    }
 
-    if (left)
+    if (left) {
         x = -1;
+        dir += 'B'
+    }
 
-    if (right)
+    if (right) {
         x = 1;
+        dir += 'F'
+    }
+
+    if (dir != '') // dont account for neutral
+        addToInputBuffer(dir)
 
     let x_offset = x * (canvas.width / 4);
     let y_offset = y * (canvas.height / 4);
