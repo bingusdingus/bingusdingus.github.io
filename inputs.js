@@ -11,7 +11,7 @@ window.onload = () => {
             pollGamepads();
 
             if (gamepad.id) {
-                handleInputs();
+                let loop = setInterval(handleInputs, 16);
                 clearInterval(interval);
             }
         }, 500);
@@ -45,7 +45,7 @@ function pollGamepads() {
 function handleGamepads(event, connecting) {
     if (connecting) {
         gamepad = event.gamepad;
-        handleInputs();
+        let loop = setInterval(handleInputs, 16);
     } else {
         gamepad = {};
     }
@@ -115,8 +115,6 @@ function handleInputs() {
     }
 
     parseAndDisplayInputs();
-
-    requestAnimationFrame(handleInputs);
 }
 
 function isPressed(button) {
@@ -127,90 +125,109 @@ function isPressed(button) {
 }
 
 function addToInputBuffer(input) {
-    inputsBuffer.push({ input: input, timestamp: Date.now() });
+    if (inputsBuffer.length > 0) {
+        let prevInput = inputsBuffer[inputsBuffer.length - 1];
 
-    if (inputsBuffer.length > 720) // 5 seconds of inputs straight
+        if (input == prevInput.input) {
+
+            let isHeld = (Math.abs(Date.now() - prevInput.timestamp) <= 35);
+
+            if (isHeld)
+                inputsBuffer[inputsBuffer.length - 1].timestamp = Date.now();
+            else
+                inputsBuffer.push({ input: input, timestamp: Date.now() });
+        } else {
+            let prevOfType = inputsBuffer.map(e => e.input).lastIndexOf(input);
+
+            if (prevOfType != -1) {
+                let isHeld = (Math.abs(Date.now() - inputsBuffer[prevOfType].timestamp) <= 35);
+
+                if (isHeld)
+                    inputsBuffer[prevOfType].timestamp = Date.now();
+                else
+                    inputsBuffer.push({ input: input, timestamp: Date.now() });
+            } else
+                inputsBuffer.push({ input: input, timestamp: Date.now() });
+
+        }
+    } else
+        inputsBuffer.push({ input: input, timestamp: Date.now() });
+
+    if (inputsBuffer.length > 10)
         inputsBuffer.shift();
 }
 
+let cachedBuffer = [];
 function parseAndDisplayInputs() {
-    let inputs = ['', '', '', '', '', '', '', '', '', ''];
+    let baseClass = 'button rounded-circle input-display d-flex justify-content-center'
 
-    for (let i = 0; i < inputsBuffer.length; i++) {
-        let input = inputsBuffer[i];
-        let prevInput = -1
+    if (!isEqual(inputsBuffer, cachedBuffer)) {
+        let displays = document.getElementById('inputDisplay').children;
+        for (let i = 0; i < inputsBuffer.length; i++) {
+            displays[i].className = baseClass;
+            displays[i].firstChild.className = '';
 
-        if ((i - 1) != -1)
-            prevInput = inputsBuffer.map(e => e.input).lastIndexOf(input.input, i - 1);
+            let currInput = inputsBuffer[i]
+            if (currInput.input == 'p')
+                displays[i].classList.add('p');
 
-        if (prevInput != -1) {
-            let pI = inputsBuffer[prevInput];
-            let cI = input;
+            if (currInput.input == 'k')
+                displays[i].classList.add('k');
 
-            if (!(Math.abs(cI.timestamp - pI.timestamp) <= 10))
-                inputs.push(cI.input);
-        } else
-            inputs.push(input.input);
+            if (currInput.input == 's')
+                displays[i].classList.add('s');
 
-        if (inputs.length > 10)
-            inputs.shift();
+            if (currInput.input == 'h')
+                displays[i].classList.add('h');
+
+            if (currInput.input == 'd')
+                displays[i].classList.add('d');
+
+            if (currInput.input.includes('ex'))
+                displays[i].classList.add('ex');
+
+            if (currInput.input == 'UB')
+                displays[i].firstChild.className = "bi bi-arrow-up-left";
+
+            if (currInput.input == 'U')
+                displays[i].firstChild.className = "bi bi-arrow-up";
+
+            if (currInput.input == 'UF')
+                displays[i].firstChild.className = "bi bi-arrow-up-right";
+
+            if (currInput.input == 'B')
+                displays[i].firstChild.className = "bi bi-arrow-left";
+
+            if (currInput.input == 'F')
+                displays[i].firstChild.className = "bi bi-arrow-right";
+
+            if (currInput.input == 'DB')
+                displays[i].firstChild.className = "bi bi-arrow-down-left";
+
+            if (currInput.input == 'D')
+                displays[i].firstChild.className = "bi bi-arrow-down";
+
+            if (currInput.input == 'DF')
+                displays[i].firstChild.className = "bi bi-arrow-down-right";
+        }
     }
 
-    let displays = document.getElementById('inputDisplay').children;
-    for (let i = 0; i < inputs.length; i++) {
-        displays[i].className = 'button rounded-circle input-display d-flex justify-content-center';
-        displays[i].firstChild.className = '';
+    cachedBuffer = [...inputsBuffer];
+}
 
-        if (inputs[i] != '') {
-            switch (inputs[i]) {
-                case 'p':
-                    displays[i].classList.add('p');
-                    break;
-                case 'k':
-                    displays[i].classList.add('k');
-                    break;
-                case 's':
-                    displays[i].classList.add('s');
-                    break;
-                case 'h':
-                    displays[i].classList.add('h');
-                    break;
-                case 'd':
-                    displays[i].classList.add('d');
-                    break;
-                case 'ex1':
-                case 'ex2':
-                case 'ex3':
-                    displays[i].classList.add('ex');
-                    break;
-                case 'UB':
-                    displays[i].firstChild.className = "bi bi-arrow-up-left";
-                    break;
-                case 'U':
-                    displays[i].firstChild.className = "bi bi-arrow-up";
-                    break;
-                case 'UF':
-                    displays[i].firstChild.className = "bi bi-arrow-up-right";
-                    break;
-                case 'B':
-                    displays[i].firstChild.className = "bi bi-arrow-left";
-                    break;
-                case 'F':
-                    displays[i].firstChild.className = "bi bi-arrow-right";
-                    break;
-                case 'DB':
-                    displays[i].firstChild.className = "bi bi-arrow-down-left";
-                    break;
-                case 'D':
-                    displays[i].firstChild.className = "bi bi-arrow-down";
-                    break;
-                case 'DF':
-                    displays[i].firstChild.className = "bi bi-arrow-down-right";
-                    break;
-            }
-        } else
-            continue;
+function isEqual(arr1, arr2) {
+    if (arr1.length != arr2.length)
+        return false;
+
+    for (let i = 0; i < arr1.length; i++) {
+        if (arr1[i].input != arr2[i].input)
+            return false;
+
+        if (arr1[i].timestamp != arr2[i].timestamp)
+            return false;
     }
+
+    return true;
 }
 
 function handleDirections(up, down, left, right) {
@@ -241,7 +258,7 @@ function handleDirections(up, down, left, right) {
         dir += 'F'
     }
 
-    if (dir != '') // dont account for neutral
+    if (dir != '')
         addToInputBuffer(dir)
 
     let x_offset = x * (canvas.width / 4);
