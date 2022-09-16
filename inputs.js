@@ -194,20 +194,20 @@ function parseAndDisplayInputs() {
             if (currInput.input == 'UF')
                 displays[i].firstChild.className = "bi bi-arrow-up-right";
 
-            if (currInput.input == 'B')
-                displays[i].firstChild.className = "bi bi-arrow-left";
-
             if (currInput.input == 'F')
                 displays[i].firstChild.className = "bi bi-arrow-right";
 
-            if (currInput.input == 'DB')
-                displays[i].firstChild.className = "bi bi-arrow-down-left";
+            if (currInput.input == 'DF')
+                displays[i].firstChild.className = "bi bi-arrow-down-right";
 
             if (currInput.input == 'D')
                 displays[i].firstChild.className = "bi bi-arrow-down";
 
-            if (currInput.input == 'DF')
-                displays[i].firstChild.className = "bi bi-arrow-down-right";
+            if (currInput.input == 'DB')
+                displays[i].firstChild.className = "bi bi-arrow-down-left";
+
+            if (currInput.input == 'B')
+                displays[i].firstChild.className = "bi bi-arrow-left";
         }
     }
 
