@@ -103,6 +103,7 @@ class ColorPicker extends HTMLElement {
     }
 
     dispatch() {
+        this.setAttribute('color', this.formatRGBAString());
         this.dispatchEvent(new CustomEvent('colorchanged', {
             bubbles: true,
             composed: true,
