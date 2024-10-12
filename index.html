@@ -1,69 +1,82 @@
 <!DOCTYPE html>
 <html lang="en" data-bs-theme="dark">
-  <head>
-    <meta charset="utf-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1" />
-    <title>bingusdingus</title>
-    <link rel="icon" type="image/x-icon" href="content/img/favicon.ico" />
-    <link
-      href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css"
-      rel="stylesheet"
-      integrity="sha384-QWTKZyjpPEjISv5WaRU9OFeRpok6YctnYmDr5pNlyT2bRjXh0JMhjY6hW+ALEwIH"
-      crossorigin="anonymous"
-    />
-    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css" />
-  </head>
-  <body class="d-flex vw-100 vh-100">
-    <div class="bg-body-secondary vh-100" style="width: 20rem">
-      <div class="navbar bg-body-tertiary">
-        <div class="container-fluid">
-          <a href="#" class="navbar-brand">
-            <img src="content/img/favicon.ico" class="d-inline-block me-2" width="23" height="23" title="funny fella" alt="bingusdingus logo" />
-            bingusdingus
-          </a>
-          <button type="button" class="btn" title="Close Navigation">
-            <i class="bi bi-arrow-bar-left"></i>
-          </button>
-        </div>
-      </div>
-      <nav class="list-group list-group-flush">
-        <button type="button" class="list-group-item list-group-item-action active" aria-current="true">Home</button>
-        <button type="button" class="list-group-item list-group-item-action">Fight Stick Visualizer</button>
-        <button type="button" class="list-group-item list-group-item-action">Tournament Overlay</button>
-      </div>
-    </div>
-    <div class="bg-body vh-100 flex-grow-1">
-      <div class="navbar bg-body-tertiary">
-        <div class="container-fluid gap-2 justify-content-start">
-          <button type="button" class="btn" title="Open Navigation">
-            <i class="bi bi-arrow-bar-right"></i>
-          </button>
-          <span class="navbar-brand flex-grow-1">App</span>
-          <button type="button" class="btn" title="Light Theme">
-            <i class="bi bi-sun-fill"></i>
-          </button>
-          <button type="button" class="btn" title="Dark Theme">
-            <i class="bi bi-moon-fill"></i>
-          </button>
-        </div>
-      </div>
-      <main class="p-2 p-lg-4" style="height: calc(100vh - 56px); max-height: calc(100vh - 56px);">
-        <div class="row gy-3">
-          <div class="col-12 col-lg-6">
-            <div class="card">
-              <div class="card-body">
-                <h5 class="card-title">Body</h5>
-                <input type="color" class="form-control" />
-              </div>
+    <head>
+        <meta charset="utf-8" />
+        <meta name="viewport" content="width=device-width, initial-scale=1" />
+        <title>bingusdingus</title>
+        <link rel="icon" type="image/x-icon" href="content/img/favicon.ico" />
+        <link
+            href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css"
+            rel="stylesheet"
+            integrity="sha384-QWTKZyjpPEjISv5WaRU9OFeRpok6YctnYmDr5pNlyT2bRjXh0JMhjY6hW+ALEwIH"
+            crossorigin="anonymous"
+        />
+        <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css" />
+    </head>
+    <body class="d-flex vw-100 vh-100">
+        <div class="bg-body-secondary vh-100" style="width: 20rem">
+            <div class="navbar bg-body-tertiary">
+                <div class="container-fluid">
+                    <a href="#" class="navbar-brand">
+                        <img src="content/img/favicon.ico" class="d-inline-block me-2" width="23" height="23" title="funny fella" alt="bingusdingus logo" />
+                        bingusdingus
+                    </a>
+                    <button type="button" class="btn" title="Close Navigation">
+                        <i class="bi bi-arrow-bar-left"></i>
+                    </button>
+                </div>
             </div>
-          </div>
+            <nav class="list-group list-group-flush">
+                <button type="button" class="list-group-item list-group-item-action active" aria-current="true">Home</button>
+                <button type="button" class="list-group-item list-group-item-action">Fight Stick Visualizer</button>
+                <button type="button" class="list-group-item list-group-item-action">Tournament Overlay</button>
+            </nav>
         </div>
-      </main>
-    </div>
-    <script
-      src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"
-      integrity="sha384-YvpcrYf0tY3lHB60NNkmXc5s9fDVZLESaAA55NDzOxhy9GkcIdslK1eN7N6jIeHz"
-      crossorigin="anonymous"
-    ></script>
-  </body>
+        <div class="bg-body vh-100 flex-grow-1">
+            <div class="navbar bg-body-tertiary">
+                <div class="container-fluid gap-2 justify-content-start">
+                    <button type="button" class="btn" title="Open Navigation">
+                        <i class="bi bi-arrow-bar-right"></i>
+                    </button>
+                    <span class="navbar-brand flex-grow-1">App</span>
+                    <button type="button" class="btn" title="Light Theme">
+                        <i class="bi bi-sun-fill"></i>
+                    </button>
+                    <button type="button" class="btn" title="Dark Theme">
+                        <i class="bi bi-moon-fill"></i>
+                    </button>
+                </div>
+            </div>
+            <main class="p-2 p-lg-4" style="max-height: calc(100vh - 56px)">
+                <div class="row gy-3">
+                    <div class="col-12 col-lg-6">
+                        <div class="card">
+                            <h5 class="card-header">Base</h5>
+                            <div class="card-body">
+                                <div class="row">
+                                    <label class="col-form-label col-lg-3">Color</label>
+                                    <div class="col-lg-9 d-flex align-items-center">
+                                        <input type="color" class="form-control" />
+                                    </div>
+                                    <label class="col-form-label col-lg-3">Alpha</label>
+                                    <div class="col-lg-9 d-flex align-items-center">
+                                        <input type="range" class="form-range" />
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-12 col-lg-6">
+                        <color-picker></color-picker>
+                    </div>
+                </div>
+            </main>
+        </div>
+        <script src="content/js/colorPicker.js"></script>
+        <script
+            src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"
+            integrity="sha384-YvpcrYf0tY3lHB60NNkmXc5s9fDVZLESaAA55NDzOxhy9GkcIdslK1eN7N6jIeHz"
+            crossorigin="anonymous"
+        ></script>
+    </body>
 </html>
