@@ -1,9 +1,7 @@
 class ColorPicker extends HTMLElement {
     constructor() {
         super();
-    }
 
-    connectedCallback() {
         const shadow = this.attachShadow({ mode: 'open' });
 
         const style = document.createElement('link');
@@ -66,6 +64,10 @@ class ColorPicker extends HTMLElement {
         row.appendChild(alphaLabel);
         row.appendChild(alphaContainer);
         alphaContainer.appendChild(alpha);
+    }
+
+    connectedCallback() {
+        
     }
 }
 
