@@ -13,209 +13,87 @@
         />
         <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css" />
     </head>
-    <body class="d-flex vw-100 vh-100">
-        <div class="bg-body-secondary vh-100" style="width: 20rem">
-            <div class="navbar bg-body-tertiary">
-                <div class="container-fluid">
-                    <a href="#" class="navbar-brand">
-                        <img src="content/img/favicon.ico" class="d-inline-block me-2" width="23" height="23" title="funny fella" alt="bingusdingus logo" />
-                        bingusdingus
-                    </a>
-                    <button type="button" class="btn" title="Close Navigation">
-                        <i class="bi bi-arrow-bar-left"></i>
+    <body class="d-flex vh-100">
+        <nav id="navigation" class="offcanvas-lg offcanvas-start border-end" style="width: 20rem; max-width: 20rem" tabindex="-1" aria-labelledby="navigationLabel">
+            <div class="offcanvas-body d-flex flex-column p-0">
+                <div class="navbar bg-body-tertiary">
+                    <div class="container-fluid justify-content-start gap-2">
+                        <button type="button" class="btn">
+                            <img src="content/img/favicon.ico" width="24" height="24" alt="Logo" />
+                        </button>
+                        <span id="navigationLabel" class="navbar-brand flex-grow-1">bingusdingus</span>
+                        <button
+                            type="button"
+                            class="btn-close d-block d-lg-none"
+                            data-bs-dismiss="offcanvas"
+                            data-bs-target="#navigation"
+                            aria-label="Close"
+                        ></button>
+                    </div>
+                </div>
+                <div id="links" class="nav nav-pills flex-column" role="tablist" aria-orientation="vertical">
+                    <button
+                        id="homeLink"
+                        type="button"
+                        class="nav-link rounded-0 active"
+                        data-header="Home"
+                        data-bs-toggle="pill"
+                        data-bs-target="#home"
+                        role="tab"
+                        aria-controls="home"
+                        aria-selected="true"
+                    >
+                        Home
+                    </button>
+                    <button
+                        id="visualizerLink"
+                        type="button"
+                        class="nav-link rounded-0"
+                        data-header="Visualizer"
+                        data-bs-toggle="pill"
+                        data-bs-target="#visualizer"
+                        role="tab"
+                        aria-controls="visualizer"
+                        aria-selected="false"
+                    >
+                        Visualizer
                     </button>
                 </div>
             </div>
-            <nav class="list-group list-group-flush">
-                <button type="button" class="list-group-item list-group-item-action active" aria-current="true">Home</button>
-                <button type="button" class="list-group-item list-group-item-action">Fight Stick Visualizer</button>
-                <button type="button" class="list-group-item list-group-item-action">Tournament Overlay</button>
-            </nav>
-        </div>
-        <div class="bg-body vh-100 flex-grow-1">
+        </nav>
+        <main class="flex-grow-1">
             <div class="navbar bg-body-tertiary">
-                <div class="container-fluid gap-2 justify-content-start">
-                    <button type="button" class="btn" title="Open Navigation">
-                        <i class="bi bi-arrow-bar-right"></i>
+                <div class="container-fluid justify-content-start gap-2">
+                    <button type="button" class="btn d-block d-lg-none" data-bs-toggle="offcanvas" data-bs-target="#navigation" aria-controls="navigation">
+                        <svg
+                            xmlns="http://www.w3.org/2000/svg"
+                            width="24"
+                            height="24"
+                            fill="currentColor"
+                            class="bi bi-list align-text-center"
+                            viewBox="0 0 16 16"
+                        >
+                            <path
+                                fill-rule="evenodd"
+                                d="M2.5 12a.5.5 0 0 1 .5-.5h10a.5.5 0 0 1 0 1H3a.5.5 0 0 1-.5-.5m0-4a.5.5 0 0 1 .5-.5h10a.5.5 0 0 1 0 1H3a.5.5 0 0 1-.5-.5m0-4a.5.5 0 0 1 .5-.5h10a.5.5 0 0 1 0 1H3a.5.5 0 0 1-.5-.5"
+                            />
+                        </svg>
                     </button>
-                    <span class="navbar-brand flex-grow-1">App</span>
-                    <button type="button" class="btn" title="Light Theme">
-                        <i class="bi bi-sun-fill"></i>
-                    </button>
-                    <button type="button" class="btn" title="Dark Theme">
-                        <i class="bi bi-moon-fill"></i>
-                    </button>
+                    <span id="applicationLabel" class="navbar-brand flex-grow-1">Home</span>
                 </div>
             </div>
-            <main class="p-2 p-lg-4" style="max-height: calc(100vh - 56px)">
-                <div class="row gy-3">
-                    <!-- <div class="col-12 col-lg-6">
-                        <div class="card">
-                            <h5 class="card-header">Base</h5>
-                            <div class="card-body">
-                                <div class="row">
-                                    <label class="col-form-label col-lg-3">Color</label>
-                                    <div class="col-lg-9 d-flex align-items-center">
-                                        <input type="color" class="form-control" />
-                                    </div>
-                                    <label class="col-form-label col-lg-3">Alpha</label>
-                                    <div class="col-lg-9 d-flex align-items-center">
-                                        <input type="range" class="form-range" />
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                    </div> -->
-                    <div class="col-12">
-                        <div class="card text-bg-light">
-                            <h5 class="card-header">Preview</h5>
-                            <div class="card-body">
-                                <!-- BEGIN COMPONENT -->
-                                <div class="container-fluid">
-                                    <div class="row gy-2">
-                                        <div class="col-12 text-bg-dark rounded-pill py-4">
-                                            <div class="row">
-                                                <div class="col-4 offset-1">
-                                                    <div class="row gy-2">
-                                                        <!-- HITBOX -->
-                                                        <div class="col-3 p-2" style="aspect-ratio: 1/1">
-                                                            <div class="rounded-circle bg-info w-100 h-100"></div>
-                                                        </div>
-                                                        <div class="col-3 p-2" style="aspect-ratio: 1/1">
-                                                            <div class="rounded-circle bg-info w-100 h-100"></div>
-                                                        </div>
-                                                        <div class="col-3 p-2" style="aspect-ratio: 1/1">
-                                                            <div class="rounded-circle bg-info w-100 h-100"></div>
-                                                        </div>
-                                                        <div class="col-3 offset-9 p-2" style="aspect-ratio: 1/1">
-                                                            <div class="rounded-circle bg-info w-100 h-100"></div>
-                                                        </div>
-                                                        <!-- MIXBOX -->
-                                                        <!-- <div class="col-3 offset-6 p-2" style="aspect-ratio: 1/1">
-                                                            <div class="bg-info rounded w-100 h-100"></div>
-                                                        </div>
-                                                        <div class="col-3 offset-3 p-2" style="aspect-ratio: 1/1">
-                                                            <div class="bg-info rounded w-100 h-100"></div>
-                                                        </div>
-                                                        <div class="col-3 p-2" style="aspect-ratio: 1/1">
-                                                            <div class="bg-info rounded w-100 h-100"></div>
-                                                        </div>
-                                                        <div class="col-3 p-2" style="aspect-ratio: 1/1">
-                                                            <div class="bg-info rounded w-100 h-100"></div>
-                                                        </div> -->
-                                                    </div>
-                                                </div>
-                                                <div class="col-4 offset-2">
-                                                    <div class="row gy-2">
-                                                        <div class="col-3 p-2" style="aspect-ratio: 1/1">
-                                                            <div class="rounded-circle bg-info w-100 h-100"></div>
-                                                        </div>
-                                                        <div class="col-3 p-2" style="aspect-ratio: 1/1">
-                                                            <div class="rounded-circle bg-info w-100 h-100"></div>
-                                                        </div>
-                                                        <div class="col-3 p-2" style="aspect-ratio: 1/1">
-                                                            <div class="rounded-circle bg-info w-100 h-100"></div>
-                                                        </div>
-                                                        <div class="col-3 p-2" style="aspect-ratio: 1/1">
-                                                            <div class="rounded-circle bg-info w-100 h-100"></div>
-                                                        </div>
-                                                        <div class="col-3 p-2" style="aspect-ratio: 1/1">
-                                                            <div class="rounded-circle bg-info w-100 h-100"></div>
-                                                        </div>
-                                                        <div class="col-3 p-2" style="aspect-ratio: 1/1">
-                                                            <div class="rounded-circle bg-info w-100 h-100"></div>
-                                                        </div>
-                                                        <div class="col-3 p-2" style="aspect-ratio: 1/1">
-                                                            <div class="rounded-circle bg-info w-100 h-100"></div>
-                                                        </div>
-                                                        <div class="col-3 p-2" style="aspect-ratio: 1/1">
-                                                            <div class="rounded-circle bg-info w-100 h-100"></div>
-                                                        </div>
-                                                    </div>
-                                                </div>
-                                            </div>
-                                        </div>
-                                        <div class="col-12">
-                                            <div class="row text-bg-dark rounded-pill">
-                                                <div class="col-1 p-2" style="aspect-ratio: 1/1">
-                                                    <div class="rounded-circle bg-info w-100 h-100"></div>
-                                                </div>
-                                                <div class="col-1 p-2" style="aspect-ratio: 1/1">
-                                                    <div class="rounded-circle bg-info w-100 h-100"></div>
-                                                </div>
-                                                <div class="col-1 p-2" style="aspect-ratio: 1/1">
-                                                    <div class="rounded-circle bg-info w-100 h-100"></div>
-                                                </div>
-                                                <div class="col-1 p-2" style="aspect-ratio: 1/1">
-                                                    <div class="rounded-circle bg-info w-100 h-100"></div>
-                                                </div>
-                                                <div class="col-1 p-2" style="aspect-ratio: 1/1">
-                                                    <div class="rounded-circle bg-info w-100 h-100"></div>
-                                                </div>
-                                                <div class="col-1 p-2" style="aspect-ratio: 1/1">
-                                                    <div class="rounded-circle bg-info w-100 h-100"></div>
-                                                </div>
-                                                <div class="col-1 p-2" style="aspect-ratio: 1/1">
-                                                    <div class="rounded-circle bg-info w-100 h-100"></div>
-                                                </div>
-                                                <div class="col-1 p-2" style="aspect-ratio: 1/1">
-                                                    <div class="rounded-circle bg-info w-100 h-100"></div>
-                                                </div>
-                                                <div class="col-1 p-2" style="aspect-ratio: 1/1">
-                                                    <div class="rounded-circle bg-info w-100 h-100"></div>
-                                                </div>
-                                                <div class="col-1 p-2" style="aspect-ratio: 1/1">
-                                                    <div class="rounded-circle bg-info w-100 h-100"></div>
-                                                </div>
-                                                <div class="col-1 p-2" style="aspect-ratio: 1/1">
-                                                    <div class="rounded-circle bg-info w-100 h-100"></div>
-                                                </div>
-                                                <div class="col-1 p-2" style="aspect-ratio: 1/1">
-                                                    <div class="rounded-circle bg-info w-100 h-100"></div>
-                                                </div>
-                                            </div>
-                                        </div>
-                                    </div>
-                                </div>
-                                <!-- END COMPONENT -->
-                            </div>
-                        </div>
-                    </div>
-                    <div class="col-12 col-lg-6">
-                        <div class="card">
-                            <h5 class="card-header">Base</h5>
-                            <ul class="list-group list-group-flush">
-                                <li class="list-group-item d-flex flex-row align-items-center">
-                                    <label class="col-form-label col-lg-3">Style</label>
-                                    <div class="col-lg-9 d-flex align-items-center">
-                                        <select class="form-select">
-                                            <option>Rounded</option>
-                                            <option>Squared</option>
-                                        </select>
-                                    </div>
-                                </li>
-                                <li class="list-group-item d-flex flex-row align-items-center">
-                                    <label class="col-form-label col-lg-3">Color</label>
-                                    <div class="col-lg-9 d-flex align-items-center">
-                                        <input type="color" class="form-control" />
-                                    </div>
-                                </li>
-                                <li class="list-group-item d-flex flex-row align-items-center">
-                                    <label class="col-form-label col-lg-3">Opacity</label>
-                                    <div class="col-lg-9 d-flex align-items-center">
-                                        <input type="range" class="form-range" />
-                                    </div>
-                                </li>
-                            </ul>
-                        </div>
-                    </div>
-                    <div class="col-12 col-lg-6">
-                        <color-picker></color-picker>
-                    </div>
+            <div id="content" class="container-fluid tab-content py-3 overflow-auto" style="max-height: calc(100vh - 56px)">
+                <div id="home" class="tab-pane show active" role="tabpanel" aria-labelledby="homeLink" tabindex="0">
+                    <home-page></home-page>
                 </div>
-            </main>
-        </div>
-        <script src="content/js/components/colorPicker.js"></script>
+                <div id="visualizer" class="tab-pane" role="tabpanel" aria-labelledby="visualizerLink" tabindex="0">
+                    <visualizer-page></visualizer-page>
+                </div>
+            </div>
+        </main>
+        <script type="text/javascript" src="content/js/navigation.js"></script>
+        <script type="text/javascript" src="content/components/home/home.js"></script>
+        <script type="text/javascript" src="content/components/visualizer/visualizer.js"></script>
         <script
             src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"
             integrity="sha384-YvpcrYf0tY3lHB60NNkmXc5s9fDVZLESaAA55NDzOxhy9GkcIdslK1eN7N6jIeHz"
