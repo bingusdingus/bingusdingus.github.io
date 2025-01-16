@@ -5,8 +5,7 @@ class Visualizer extends HTMLElement {
 
     async connectedCallback() {
         const shadow = this.attachShadow({ mode: 'open' });
-
-        shadow.innerHTML = await (await fetch("/content/components/visualizer/visualizer.html")).text();
+        await fetch("/content/components/visualizer/visualizer.html").then(r => r.text()).then(h => shadow.appendChild(new DOMParser().parseFromString(h, 'text/html').documentElement));
     }
 }
 
