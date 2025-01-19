@@ -1,3 +1,5 @@
+import * as tools from '/content/js/tools.js';
+
 class Home extends HTMLElement {
     constructor() {
         super();
@@ -5,7 +7,7 @@ class Home extends HTMLElement {
 
     async connectedCallback() {
         const shadow = this.attachShadow({ mode: 'open' });
-        await fetch("/content/components/home/home.html").then(r => r.text()).then(h => shadow.appendChild(new DOMParser().parseFromString(h, 'text/html').documentElement));
+        await tools.getComponent('home', shadow);
 
         const names = [
             "bingodingo",
