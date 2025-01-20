@@ -1,12 +1,23 @@
-export async function getComponent(componentName, shadow) {
-    await fetch(`/content/components/${componentName}/${componentName}.html`).then(r => r.text()).then(h => shadow.appendChild(new DOMParser().parseFromString(h, 'text/html').documentElement));
+export async function getPage(context, page) {
+    context.replaceWith(...getHTML(await getText('pages', page)));
 }
 
-export async function getSubComponent(componentName, shadow) {
-    await fetch(`/content/components/${componentName}/${componentName}.js`).then(r => r.text()).then(s => {
-        let script = document.createElement('script');
-        script.type = 'module';
-        script.innerHTML = s;
-        shadow.appendChild(script);
-    });
+export async function getPageHTML(page) {
+    return getHTML(await getText('pages', page));
+}
+
+export async function getComponent(context, component) {
+    context.replaceWith(...getHTML(await getText('components', component)));
+}
+
+export async function getComponentHTML(component) {
+    return getHTML(await getText('components', component));
+}
+
+async function getText(folder, name) {
+    return (await fetch(`/content/${folder}/${name}/${name}.html`)).text();
+}
+
+function getHTML(text) {
+    return new DOMParser().parseFromString(text, 'text/html').documentElement.querySelectorAll('body > *');
 }
