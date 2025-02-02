@@ -20,9 +20,11 @@
         <script type="module" src="/content/components/button/button.js"></script>
         <script type="module">
             import controller from "/content/components/controller/controller.js";
+            import history from '/content/components/history/history.js';
             import button from "/content/components/button/button.js";
 
             customElements.define("controller-display", controller);
+            customElements.define('controller-history', history);
             customElements.define("controller-button", button);
 
             // TODO: read from query for customizations
