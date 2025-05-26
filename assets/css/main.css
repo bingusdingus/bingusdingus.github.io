@@ -1,0 +1,36 @@
+.raised {
+    --raised-height: 0.25rem;
+
+    --highlight-height: var(--raised-height);
+    --highlight-position: -0.25rem;
+    --highlight-rgb: var(--bs-body-bg-rgb);
+    --highlight-opacity: 1;
+    --highlight-color: rgba(var(--highlight-rgb), var(--highlight-opacity));
+    --shadow-height: calc((var(--raised-height) + 0.25rem));
+    --shadow-position: 0.15rem;
+    --shadow-rgb: var(--bs-secondary-color-rgb);
+    --shadow-opacity: 0.25;
+    --shadow-color: rgba(var(--shadow-rgb), var(--shadow-opacity));
+
+    --highlight: var(--highlight-position) var(--highlight-position) var(--highlight-height) var(--highlight-color);
+    --shadow: var(--shadow-position) var(--shadow-position) var(--shadow-height) var(--shadow-color);
+}
+
+[data-bs-theme="light"] .raised {
+    box-shadow: 
+        var(--highlight), 
+        var(--shadow);
+}
+
+[data-bs-theme="dark"] .raised {
+    --highlight-position: -0.15rem;
+    --highlight-rgb: var(--bs-secondary-color-rgb);
+    --highlight-opacity: 0.25;
+    --shadow-position: 0.25rem;
+    --shadow-rgb: var(--bs-body-bg-rgb);
+    --shadow-opacity: 1;
+
+    box-shadow: 
+        var(--highlight), 
+        var(--shadow);
+}
