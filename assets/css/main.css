@@ -14,9 +14,7 @@
 
     --highlight: var(--highlight-position) var(--highlight-position) var(--highlight-height) var(--highlight-color);
     --shadow: var(--shadow-position) var(--shadow-position) var(--shadow-height) var(--shadow-color);
-}
 
-[data-bs-theme="light"] .raised {
     box-shadow: 
         var(--highlight), 
         var(--shadow);
@@ -29,8 +27,13 @@
     --shadow-position: 0.25rem;
     --shadow-rgb: var(--bs-body-bg-rgb);
     --shadow-opacity: 1;
+}
 
-    box-shadow: 
-        var(--highlight), 
-        var(--shadow);
+.link {
+    text-underline-offset: 0.375rem !important;
+    text-decoration: none !important;
+}
+
+.link.active {
+    text-decoration: underline !important;
 }
