@@ -37,3 +37,12 @@
 .link.active {
     text-decoration: underline !important;
 }
+
+#name-display::after {
+    content: ".";
+    position: absolute;
+}
+
+#name-display-bar {
+    transition: none;
+}

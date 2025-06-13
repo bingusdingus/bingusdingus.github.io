@@ -4,6 +4,14 @@ title: "Home"
 ---
 
 <h1>Hello, I'm bingusdingus.</h1>
-<h5 class="mb-4">You might also know me as<span class="d-lg-none">:<br /></span> <span id="name-display">blucheese</span>.</h5> <!-- TODO: figure out a timer indicator. -->
+<div class="d-flex flex-column flex-lg-row fs-5">
+    <span>You might also know me as<span class="d-lg-none">:</span>&nbsp;</span>
+    <div class="d-flex flex-column" style="width: fit-content;">
+        <span id="name-display">blucheese</span>
+        <div class="progress" style="height: 1px;">
+            <div id="name-display-bar" class="progress-bar" style="width: 0%;"></div>
+        </div>
+    </div>
+</div>
 
 <script src="/assets/js/name-swapper.js"></script>
