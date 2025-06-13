@@ -1,4 +1,4 @@
-const names = ['blucheese', 'blu_cheese', 'Aperature Science Prototype XR7', 'stinkysteve95', 'waffleboy53', 'farmerbill1982', 'BatmanFan33039'];
+const names = ['blucheese', 'blu_cheese', 'Aperature Science Prototype XR7', 'stinkysteve95', 'cat_lover1996', 'waffleboy53', 'farmerbill1982', 'BatmanFan33039'];
 const nameDisplay = document.getElementById('name-display');
 const nameDisplayBar = document.getElementById('name-display-bar');
 
